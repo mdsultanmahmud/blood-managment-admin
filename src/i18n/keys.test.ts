@@ -11,7 +11,7 @@ import en from '@/locales/en.json';
 const SRC = resolve('src');
 const DYNAMIC_PREFIXES = ['errors.', 'menu.', 'lang.'];
 const KEY_LITERAL =
-  /['"`]((?:auth|common|shell|status|validation|errors|lang|roles|staff|dashboard)\.[A-Za-z0-9_.-]+)['"`]/g;
+  /['"`]((?:auth|common|shell|status|validation|errors|lang|roles|staff|dashboard|blood|requests|donors|banks|stock)\.[A-Za-z0-9_.-]+)['"`]/g;
 const PLURAL = /_(zero|one|two|few|many|other)$/;
 
 function sourceFiles(dir: string): string[] {

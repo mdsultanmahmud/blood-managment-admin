@@ -11,6 +11,10 @@ export type PageRegistry = Readonly<Record<string, LazyExoticComponent<Component
 /** Real pages by App hub menu key; other menus show Under Construction. */
 export const PAGES: PageRegistry = {
   dashboard: lazy(() => import('@/features/dashboard/DashboardPage')),
+  blood_requests: lazy(() => import('@/features/requests/RequestsPage')),
+  blood_donors: lazy(() => import('@/features/donors/DonorsPage')),
+  blood_banks: lazy(() => import('@/features/banks/BanksPage')),
+  blood_stock: lazy(() => import('@/features/stock/StockPage')),
   role_management: lazy(() => import('@/features/roles/RolesPage')),
   staff_management: lazy(() => import('@/features/staff/StaffPage')),
 };

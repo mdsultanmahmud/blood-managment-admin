@@ -35,8 +35,9 @@ export const queryKeys = {
   roles: ['roles'] as const,
   role: (id: string) => ['roles', id] as const,
   staff: ['staff'] as const,
+  dashboard: ['dashboard'] as const,
+  requests: ['requests'] as const,
   donors: ['donors'] as const,
-  donor: (id: string) => ['donors', id] as const,
-  bloodGroups: ['blood-groups'] as const,
-  contacts: ['contacts'] as const,
+  banks: ['banks'] as const,
+  stock: ['stock'] as const,
 };

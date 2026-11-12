@@ -94,8 +94,6 @@ export default defineConfig(({ mode }) => {
     },
     test: {
       environment: 'jsdom',
-      // Workaround: the default pools fail with "failed to find the current suite" on this machine.
-      pool: 'vmThreads',
       setupFiles: ['src/test/setup.ts'],
       include: ['src/**/*.test.{ts,tsx}', 'eslint-rules/**/*.test.js'],
       css: false,
