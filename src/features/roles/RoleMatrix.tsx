@@ -1,7 +1,7 @@
-import Checkbox from '@mui/material/Checkbox';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { NavNode } from '@/api/schemas';
+import { Checkbox } from '@/components/form/Checkbox';
 import { cn } from '@/lib/cn';
 import { menuLabel } from '@/lib/menus';
 import {
@@ -59,12 +59,11 @@ export function RoleMatrix({ tree, value, onChange, held, readOnly = false }: Pr
             >
               <label className="inline-flex cursor-pointer items-center gap-1 text-[13px] font-semibold text-neutral-900">
                 <Checkbox
-                  size="small"
                   checked={s === 'all'}
                   indeterminate={s === 'some'}
                   disabled={readOnly}
                   onChange={(e) => onChange(setRows(value, keys, e.target.checked, held))}
-                  slotProps={{ input: { 'aria-label': t('roles.matrix.selectAll', { name }) } }}
+                  aria-label={t('roles.matrix.selectAll', { name })}
                 />
                 {name}
               </label>
@@ -84,12 +83,11 @@ export function RoleMatrix({ tree, value, onChange, held, readOnly = false }: Pr
           <th scope="row" className="py-1 pr-2 text-left font-normal" style={indent}>
             <label className="flex cursor-pointer items-center gap-1">
               <Checkbox
-                size="small"
                 checked={s === 'all'}
                 indeterminate={s === 'some'}
                 disabled={readOnly}
                 onChange={(e) => onChange(setRows(value, [n.key], e.target.checked, held))}
-                slotProps={{ input: { 'aria-label': t('roles.matrix.selectRow', { name }) } }}
+                aria-label={t('roles.matrix.selectRow', { name })}
               />
               <span className="min-w-0">
                 <span className="block text-neutral-900">{name}</span>
@@ -114,15 +112,10 @@ export function RoleMatrix({ tree, value, onChange, held, readOnly = false }: Pr
               <td key={flag} className={cn('text-center', divider)}>
                 <span title={!readOnly && !mayGrant ? t('roles.matrix.notHeld') : undefined}>
                   <Checkbox
-                    size="small"
                     checked={Boolean(f?.[flag])}
                     disabled={readOnly || !mayGrant}
                     onChange={(e) => onChange(setFlag(value, n.key, flag, e.target.checked))}
-                    slotProps={{
-                      input: {
-                        'aria-label': t('roles.matrix.cell', { menu: name, flag: flagLabel(flag) }),
-                      },
-                    }}
+                    aria-label={t('roles.matrix.cell', { menu: name, flag: flagLabel(flag) })}
                   />
                 </span>
               </td>

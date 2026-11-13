@@ -8,7 +8,13 @@ afterEach(() => {
   window.localStorage.clear();
 });
 
-// jsdom lacks these browser APIs used by framer-motion / layout code.
+// jsdom lacks these browser APIs used by framer-motion / layout code and the combobox list.
+if (!('scrollIntoView' in Element.prototype)) {
+  Object.defineProperty(Element.prototype, 'scrollIntoView', {
+    writable: true,
+    value: () => undefined,
+  });
+}
 if (!('matchMedia' in window)) {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,

@@ -77,7 +77,6 @@ export function DonorForm({ donor }: { donor?: Donor }) {
           name="fullName"
           label={t('blood.field.fullName')}
           autoFocus
-          fullWidth
         />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <FormTextField
@@ -86,7 +85,6 @@ export function DonorForm({ donor }: { donor?: Donor }) {
             type="tel"
             label={t('blood.field.phone')}
             helperText={t('blood.phoneHelp')}
-            fullWidth
           />
           <FormAutocomplete
             control={control}
@@ -94,20 +92,13 @@ export function DonorForm({ donor }: { donor?: Donor }) {
             label={t('blood.field.bloodGroup')}
             options={groupOptions(t)}
           />
-          <FormTextField
-            control={control}
-            name="district"
-            label={t('blood.field.district')}
-            fullWidth
-          />
+          <FormTextField control={control} name="district" label={t('blood.field.district')} />
           <FormTextField
             control={control}
             name="lastDonatedOn"
             type="date"
             label={t('blood.field.lastDonatedOn')}
             helperText={t('donors.form.neverDonatedHelp')}
-            slotProps={{ inputLabel: { shrink: true } }}
-            fullWidth
           />
         </div>
         <FormAutocomplete
@@ -129,7 +120,6 @@ export function DonorForm({ donor }: { donor?: Donor }) {
           label={t('blood.field.notes')}
           multiline
           minRows={2}
-          fullWidth
         />
       </ModalBody>
       <ModalFooter>

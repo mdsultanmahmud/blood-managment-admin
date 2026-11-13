@@ -1,6 +1,6 @@
 # base-theme design tokens (`roktolife`)
 
-The only theme today. Defined in `src/themes/roktolife/theme.ts`; the engine in `src/themes/engine/` turns it into CSS variables, a MUI theme and an AG Grid theme. Components use tokens only, never raw colors.
+The only theme today. Defined in `src/themes/roktolife/theme.ts`; the engine in `src/themes/engine/` turns it into CSS variables and an AG Grid theme. Components use tokens only, never raw colors.
 
 | Token | Value |
 | --- | --- |

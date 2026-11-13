@@ -48,20 +48,13 @@ export function AddStaffForm() {
   return (
     <form onSubmit={(e) => void onSubmit(e)} noValidate>
       <ModalBody className="flex flex-col gap-4">
-        <FormTextField
-          control={control}
-          name="name"
-          label={t('staff.form.name')}
-          autoFocus
-          fullWidth
-        />
+        <FormTextField control={control} name="name" label={t('staff.form.name')} autoFocus />
         <FormTextField
           control={control}
           name="email"
           type="email"
           autoComplete="off"
           label={t('staff.form.email')}
-          fullWidth
         />
         <FormPasswordField
           control={control}
@@ -113,20 +106,13 @@ export function EditStaffForm({ staff }: { staff: Staff }) {
   return (
     <form onSubmit={(e) => void onSubmit(e)} noValidate>
       <ModalBody className="flex flex-col gap-4">
-        <FormTextField
-          control={control}
-          name="name"
-          label={t('staff.form.name')}
-          autoFocus
-          fullWidth
-        />
+        <FormTextField control={control} name="name" label={t('staff.form.name')} autoFocus />
         <FormTextField
           control={control}
           name="email"
           type="email"
           autoComplete="off"
           label={t('staff.form.email')}
-          fullWidth
         />
         <FormMultiAutocomplete
           control={control}

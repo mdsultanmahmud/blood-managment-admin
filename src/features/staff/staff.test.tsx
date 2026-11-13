@@ -121,7 +121,9 @@ describe('Staff page', { timeout: 20_000 }, () => {
     await user.type(within(dialog).getByLabelText('Email'), 'rahim@roktolife.test');
     await user.type(within(dialog).getByLabelText('Password'), 'Correct-Horse-9');
     await user.click(within(dialog).getByLabelText('Roles'));
-    await user.click(await screen.findByRole('option', { name: 'Desk' }));
+    // Scope to the popup: the grid's native role filter also has an option named "Desk".
+    const roleList = await screen.findByRole('listbox');
+    await user.click(within(roleList).getByRole('option', { name: 'Desk' }));
     await user.click(within(dialog).getByRole('button', { name: 'Add staff' }));
     expect(staffApi.create).toHaveBeenCalledWith({
       name: 'Karim',
@@ -143,7 +145,8 @@ describe('Staff page', { timeout: 20_000 }, () => {
     await user.click(await screen.findByRole('button', { name: 'Add staff' }));
     const dialog = await screen.findByRole('dialog');
     await user.click(within(dialog).getByLabelText('Roles'));
-    const admin = await screen.findByRole('option', { name: /Admin/ });
+    const roleList = await screen.findByRole('listbox');
+    const admin = within(roleList).getByRole('option', { name: /Admin/ });
     expect(admin).toHaveAttribute('aria-disabled', 'true');
   });
 });

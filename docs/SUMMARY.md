@@ -6,7 +6,7 @@ Verified against code on 2026-11-13 (folder: this repository, `blood-managment-a
 
 ## Stack and code map
 
-React 19, Vite, TypeScript, react-router 8, TanStack Query, MUI 9, Tailwind 4, AG Grid, react-hook-form + zod, i18next, framer-motion. Dev: port 5600 (strict), `http://roktolife.localhost:5600`. Vite proxies `/api` to `VITE_DEV_BACKEND` (default `http://localhost:4000`), so the page and API share an origin and the `co_rt` cookie stays first-party. `VITE_API_URL` is empty by default.
+React 19, Vite, TypeScript, react-router 8, TanStack Query, Tailwind 4 (in-house form inputs, no UI library), AG Grid, react-hook-form + zod, i18next, framer-motion. Dev: port 5600 (strict), `http://roktolife.localhost:5600`. Vite proxies `/api` to `VITE_DEV_BACKEND` (default `http://localhost:4000`), so the page and API share an origin and the `co_rt` cookie stays first-party. `VITE_API_URL` is empty by default.
 
 | Path (under `src/`) | Purpose |
 | --- | --- |
@@ -60,7 +60,7 @@ The router has only 2 entries: `/login` (lazy `LoginPage`; reads `?next=`) and `
 - **Theme selection:** by the App hub theme key from the site call; an unknown key falls back to `roktolife`; the last key is cached in localStorage `bm.themeKey`.
 - **Color modes:** none. No dark mode; `<meta color-scheme=light>`.
 - **Language:** only English (`locales/en.json`, flat dotted keys). The choice is stored in `bm.language`. A remote loader hook exists but is not wired (ADR 0022 in the backend repo).
-- **UI kit:** Button, Badge (tones neutral, primary, success, warning, danger, info; `dot` variant), Menu, Tabs, Tooltip, Avatar, Spinner, States (Empty, Error, Loading), PageLayout, Can, ToastCard, AppErrorBoundary, MenuIcon. Form: FormTextField, FormAutocomplete, FormMultiAutocomplete, FormCheckbox, FormPasswordField. Grid: DataGrid (column widths and visibility persisted per grid id), search, filters, ColumnsMenu, cells. ModalHost and ConfirmDialog (danger tone).
+- **UI kit:** Button, Badge (tones neutral, primary, success, warning, danger, info; `dot` variant), Menu, Tabs, Tooltip, Avatar, Spinner, States (Empty, Error, Loading), PageLayout, Can, ToastCard, AppErrorBoundary, MenuIcon. Form: in-house `TextField` (label above, native select), `Checkbox`, `Switch`, `Combobox`, `MultiCombobox` (chips), `MultiSelect` (grid multi-filter), wrapped by FormTextField, FormAutocomplete, FormMultiAutocomplete, FormCheckbox, FormPasswordField (no UI library; see `_shared/decisions/0001-form-inputs-without-a-ui-library.md`). Grid: DataGrid (column widths and visibility persisted per grid id), search, filters, ColumnsMenu, cells. ModalHost and ConfirmDialog (danger tone).
 - **UX rules:** modal forms have a dirty guard; destructive actions use a confirm dialog; every page has loading, error (with Retry) and empty or empty-filtered states; success and error toasts; framer-motion fades respect reduced motion; stale chunks after a deploy trigger one reload.
 - **Badge tones:** urgency CRITICAL danger, URGENT warning, MODERATE neutral. Request status PENDING warning, VERIFIED info, FULFILLED success, REJECTED neutral. Donor status PENDING warning, VERIFIED success.
 
@@ -89,6 +89,7 @@ The router has only 2 entries: `/login` (lazy `LoginPage`; reads `?next=`) and `
 
 ## Related docs
 
+- Decision: [0001 form inputs without a UI library](_shared/decisions/0001-form-inputs-without-a-ui-library.md)
 - In this repository: features [login and session](_shared/features/login-and-session.md), [dashboard](_shared/features/dashboard.md), [requests](_shared/features/requests.md), [donors](_shared/features/donors.md), [blood banks](_shared/features/blood-banks.md), [stock](_shared/features/stock.md), [roles and staff](_shared/features/roles-and-staff.md); flows [request handling](_shared/flows/request-handling.md), [donor verification](_shared/flows/donor-verification.md); guide [adding a page](_shared/guides/adding-a-page.md); designs [tokens](themes/base-theme/designs/design-tokens.md), [shell and components](themes/base-theme/designs/shell-and-components.md), [screens](themes/base-theme/designs/screens.md)
 - Backend: repo `business-central-backend`, `src/apps/blood-management/docs/SUMMARY.md`. Public site: repo `blood-management-frontend`, `docs/SUMMARY.md`.
 - Platform rules (theming, i18n, roles): repo `business-central-backend`, `docs/platform/`. ADRs 0016, 0020, 0021, 0022, 0023: repo `business-central-backend`, `docs/decisions/`.

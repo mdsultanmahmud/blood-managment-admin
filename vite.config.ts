@@ -22,7 +22,6 @@ export default defineConfig(({ mode }) => {
                 name: 'vendor-react',
                 test: /node_modules[\\/](react|react-dom|scheduler|react-router)[\\/]/,
               },
-              { name: 'vendor-mui', test: /node_modules[\\/](@mui|@emotion)[\\/]/ },
               {
                 name: 'vendor-data',
                 test: /node_modules[\\/](@tanstack|axios|zod|react-hook-form|@hookform)[\\/]/,
@@ -39,9 +38,6 @@ export default defineConfig(({ mode }) => {
     },
     optimizeDeps: {
       include: [
-        '@mui/material/InputAdornment',
-        '@mui/material/TextField',
-        '@mui/material/styles',
         '@hookform/resolvers/zod',
         '@tanstack/react-query',
         'axios',

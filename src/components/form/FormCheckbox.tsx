@@ -1,6 +1,6 @@
-import Checkbox from '@mui/material/Checkbox';
 import { useId } from 'react';
 import { Controller, type Control, type FieldValues, type Path } from 'react-hook-form';
+import { Checkbox } from './Checkbox';
 
 export function FormCheckbox<T extends FieldValues>({
   control,
@@ -19,21 +19,18 @@ export function FormCheckbox<T extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <div className="flex items-start gap-1.5">
+        <div className="flex items-start gap-2.5">
           <Checkbox
+            id={id}
             name={field.name}
             checked={Boolean(field.value)}
             onChange={(e) => field.onChange(e.target.checked)}
             onBlur={field.onBlur}
-            slotProps={{
-              input: {
-                id,
-                ref: field.ref,
-                'aria-describedby': description ? `${id}-desc` : undefined,
-              },
-            }}
+            inputRef={field.ref}
+            aria-describedby={description ? `${id}-desc` : undefined}
+            className="mt-0.5"
           />
-          <label htmlFor={id} className="cursor-pointer pt-[5px] text-sm">
+          <label htmlFor={id} className="cursor-pointer text-sm">
             <span className="text-neutral-900">{label}</span>
             {description && (
               <span id={`${id}-desc`} className="block text-[13px] text-neutral-600">

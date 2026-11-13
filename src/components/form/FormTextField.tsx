@@ -1,6 +1,6 @@
-import TextField, { type TextFieldProps } from '@mui/material/TextField';
-import { tx } from '@/lib/translate';
 import { Controller, type Control, type FieldValues, type Path } from 'react-hook-form';
+import { tx } from '@/lib/translate';
+import { TextField, type TextFieldProps } from './TextField';
 
 export type FormTextFieldProps<T extends FieldValues> = Omit<
   TextFieldProps,
@@ -10,7 +10,7 @@ export type FormTextFieldProps<T extends FieldValues> = Omit<
   name: Path<T>;
 };
 
-/** MUI TextField bound to react-hook-form; shows the field error, else the helper text. */
+/** TextField bound to react-hook-form; shows the field error, else the helper text. */
 export function FormTextField<T extends FieldValues>({
   control,
   name,

@@ -17,7 +17,7 @@
 | Button | primary, secondary, ghost, danger; loading state |
 | Badge | tones neutral, primary, success, warning, danger, info; optional dot |
 | DataGrid (AG Grid) | Server paging and sorting, URL-synced state, column widths and visibility remembered per grid, search box, multi-select filters, loading, error (retry), empty and empty-filtered states |
-| Forms | FormTextField, FormAutocomplete, FormMultiAutocomplete, FormCheckbox (switch with description), FormPasswordField; react-hook-form + zod; server errors land on the matching field |
+| Forms | In-house inputs (no UI library): `TextField` with the label above the field and a native select, `Checkbox`, `Switch`, `Combobox`, `MultiCombobox`, `MultiSelect`; wrapped by FormTextField, FormAutocomplete, FormMultiAutocomplete, FormCheckbox (checkbox with description), FormPasswordField; react-hook-form + zod; server errors land on the matching field |
 | Modal host | Dialogs and drawers; dirty guard asks before discarding; `ConfirmDialog` with danger tone for destructive actions |
 | Toasts | Success and error toasts at the top |
 | States | Empty, Error (with Retry), Loading, FullPageSpinner |
