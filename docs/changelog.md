@@ -7,3 +7,4 @@ Newest first. One line per change: date, what changed, and the doc or code it to
 | 2026-11-13 | Docs moved into this repository (`docs/`) and a `SUMMARY.md` added. |
 | 2026-11-13 | Added feature, flow, guide and base-theme design docs. |
 | 2026-11-14 | MUI removed: in-house form inputs (decision 0001); SUMMARY, design tokens and shell docs updated. |
+| 2026-11-14 | Font changed to Inter for everything (was Hanken Grotesk and JetBrains Mono); theme file, index.html, design tokens and SUMMARY updated. |

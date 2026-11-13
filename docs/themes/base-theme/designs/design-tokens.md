@@ -14,8 +14,8 @@ The only theme today. Defined in `src/themes/roktolife/theme.ts`; the engine in 
 | Surface (cards, panels) | `#FFFFFF` |
 | Radius, controls | 12 px |
 | Radius, layers (dialogs, cards) | 20 px |
-| Font, UI | Hanken Grotesk |
-| Font, code | JetBrains Mono |
+| Font, UI | Inter |
+| Font, code | Inter (the same font everywhere) |
 | Base text size | 14 px |
 
 ## How tokens reach the UI
