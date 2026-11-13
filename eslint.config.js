@@ -4,9 +4,10 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import noLiteralUiText from './eslint-rules/no-literal-ui-text.js';
 
 export default tseslint.config(
-  { ignores: ['dist/**', 'coverage/**', 'public/mockServiceWorker.js'] },
+  { ignores: ['dist/**', 'coverage/**'] },
   js.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   {
@@ -33,6 +34,13 @@ export default tseslint.config(
     },
   },
   {
+    // No hardcoded user-facing text (ADR 0022). Tests may use literals.
+    files: ['src/**/*.{ts,tsx}'],
+    ignores: ['**/*.test.{ts,tsx}', 'src/test/**'],
+    plugins: { local: { rules: { 'no-literal-ui-text': noLiteralUiText } } },
+    rules: { 'local/no-literal-ui-text': 'error' },
+  },
+  {
     // Architecture rules: axios only inside src/api; shared UI never imports features.
     files: ['src/**/*.{ts,tsx}'],
     ignores: ['src/api/**'],
@@ -44,7 +52,12 @@ export default tseslint.config(
     },
   },
   {
-    files: ['src/components/**/*.{ts,tsx}', 'src/lib/**/*.{ts,tsx}', 'src/theme/**/*.{ts,tsx}'],
+    files: [
+      'src/components/**/*.{ts,tsx}',
+      'src/lib/**/*.{ts,tsx}',
+      'src/themes/**/*.{ts,tsx}',
+      'src/i18n/**/*.{ts,tsx}',
+    ],
     rules: {
       'no-restricted-imports': [
         'error',
@@ -61,13 +74,13 @@ export default tseslint.config(
     },
   },
   {
-    files: ['**/*.test.{ts,tsx}', 'src/test/**', 'src/mocks/**'],
+    files: ['**/*.test.{ts,tsx}', 'src/test/**'],
     rules: {
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
     },
   },
-  { files: ['*.js'], ...tseslint.configs.disableTypeChecked },
+  { files: ['*.js', 'eslint-rules/**/*.js'], ...tseslint.configs.disableTypeChecked },
   prettier,
 );

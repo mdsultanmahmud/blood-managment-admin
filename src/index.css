@@ -1,5 +1,122 @@
+/*
+ * The only CSS file. Colors are NOT defined here: the theme registry (src/themes/registry.ts) is the single
+ * source, ThemeProvider writes --c-* variables on :root, and @theme inline maps Tailwind
+ * tokens onto them. Tailwind's default palette is removed so raw colors cannot creep in.
+ */
 @import 'tailwindcss';
 
-body {
-  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+@theme {
+  --color-*: initial;
+}
+
+@theme inline {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+
+  --color-primary-50: var(--c-primary-50);
+  --color-primary-100: var(--c-primary-100);
+  --color-primary-200: var(--c-primary-200);
+  --color-primary-300: var(--c-primary-300);
+  --color-primary-400: var(--c-primary-400);
+  --color-primary-500: var(--c-primary-500);
+  --color-primary-600: var(--c-primary-600);
+  --color-primary-700: var(--c-primary-700);
+  --color-primary-800: var(--c-primary-800);
+  --color-primary-900: var(--c-primary-900);
+  --color-primary-950: var(--c-primary-950);
+
+  --color-neutral-50: var(--c-neutral-50);
+  --color-neutral-100: var(--c-neutral-100);
+  --color-neutral-200: var(--c-neutral-200);
+  --color-neutral-300: var(--c-neutral-300);
+  --color-neutral-400: var(--c-neutral-400);
+  --color-neutral-500: var(--c-neutral-500);
+  --color-neutral-600: var(--c-neutral-600);
+  --color-neutral-700: var(--c-neutral-700);
+  --color-neutral-800: var(--c-neutral-800);
+  --color-neutral-900: var(--c-neutral-900);
+  --color-neutral-950: var(--c-neutral-950);
+
+  --color-success-50: var(--c-success-50);
+  --color-success-100: var(--c-success-100);
+  --color-success-200: var(--c-success-200);
+  --color-success-300: var(--c-success-300);
+  --color-success-400: var(--c-success-400);
+  --color-success-500: var(--c-success-500);
+  --color-success-600: var(--c-success-600);
+  --color-success-700: var(--c-success-700);
+  --color-success-800: var(--c-success-800);
+  --color-success-900: var(--c-success-900);
+  --color-success-950: var(--c-success-950);
+
+  --color-warning-50: var(--c-warning-50);
+  --color-warning-100: var(--c-warning-100);
+  --color-warning-200: var(--c-warning-200);
+  --color-warning-300: var(--c-warning-300);
+  --color-warning-400: var(--c-warning-400);
+  --color-warning-500: var(--c-warning-500);
+  --color-warning-600: var(--c-warning-600);
+  --color-warning-700: var(--c-warning-700);
+  --color-warning-800: var(--c-warning-800);
+  --color-warning-900: var(--c-warning-900);
+  --color-warning-950: var(--c-warning-950);
+
+  --color-danger-50: var(--c-danger-50);
+  --color-danger-100: var(--c-danger-100);
+  --color-danger-200: var(--c-danger-200);
+  --color-danger-300: var(--c-danger-300);
+  --color-danger-400: var(--c-danger-400);
+  --color-danger-500: var(--c-danger-500);
+  --color-danger-600: var(--c-danger-600);
+  --color-danger-700: var(--c-danger-700);
+  --color-danger-800: var(--c-danger-800);
+  --color-danger-900: var(--c-danger-900);
+  --color-danger-950: var(--c-danger-950);
+
+  --color-info-50: var(--c-info-50);
+  --color-info-100: var(--c-info-100);
+  --color-info-200: var(--c-info-200);
+  --color-info-300: var(--c-info-300);
+  --color-info-400: var(--c-info-400);
+  --color-info-500: var(--c-info-500);
+  --color-info-600: var(--c-info-600);
+  --color-info-700: var(--c-info-700);
+  --color-info-800: var(--c-info-800);
+  --color-info-900: var(--c-info-900);
+  --color-info-950: var(--c-info-950);
+  --font-sans: var(--font-ui);
+  --font-mono: var(--font-code);
+
+  --radius-sm: var(--radius-control);
+  --radius-md: var(--radius-layer);
+
+  --shadow-layer: 0 12px 32px -12px rgb(0 0 0 / 0.22), 0 2px 6px -2px rgb(0 0 0 / 0.08);
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+  }
+  body {
+    @apply bg-canvas font-sans text-neutral-900 antialiased;
+    font-size: var(--text-base-size);
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  /* One consistent, visible focus ring for every custom control. */
+  :where(a, button, [role='button'], [tabindex]):focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-600;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
