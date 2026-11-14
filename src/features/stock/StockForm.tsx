@@ -50,7 +50,6 @@ export function StockForm({ row }: { row: StockRow }) {
           type="number"
           label={t('stock.form.available')}
           autoFocus
-          fullWidth
         />
         <FormTextField
           control={control}
@@ -58,7 +57,6 @@ export function StockForm({ row }: { row: StockRow }) {
           type="number"
           label={t('stock.form.target')}
           helperText={t('stock.form.targetHelp')}
-          fullWidth
         />
       </ModalBody>
       <ModalFooter>

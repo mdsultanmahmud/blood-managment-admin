@@ -9,8 +9,8 @@ export const roktolife: ThemeDefinition = {
   surfaces: { canvas: '#F8FAFC', surface: '#FFFFFF' },
   radius: { control: 12, layer: 20 },
   font: {
-    sans: "'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif",
-    mono: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+    sans: "'Inter', ui-sans-serif, system-ui, sans-serif",
+    mono: "'Inter', ui-sans-serif, system-ui, sans-serif",
     baseSize: 14,
   },
 };

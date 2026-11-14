@@ -65,42 +65,24 @@ export function BankForm({ bank }: { bank?: BloodBank }) {
   return (
     <form onSubmit={(e) => void onSubmit(e)} noValidate>
       <ModalBody className="flex flex-col gap-4">
-        <FormTextField
-          control={control}
-          name="name"
-          label={t('blood.field.name')}
-          autoFocus
-          fullWidth
-        />
+        <FormTextField control={control} name="name" label={t('blood.field.name')} autoFocus />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <FormTextField
-            control={control}
-            name="district"
-            label={t('blood.field.district')}
-            fullWidth
-          />
+          <FormTextField control={control} name="district" label={t('blood.field.district')} />
           <FormTextField
             control={control}
             name="phone"
             type="tel"
             label={t('blood.field.phoneOptional')}
             helperText={t('blood.phoneHelp')}
-            fullWidth
           />
         </div>
-        <FormTextField
-          control={control}
-          name="address"
-          label={t('blood.field.address')}
-          fullWidth
-        />
+        <FormTextField control={control} name="address" label={t('blood.field.address')} />
         <FormTextField
           control={control}
           name="notes"
           label={t('blood.field.notes')}
           multiline
           minRows={2}
-          fullWidth
         />
         <FormCheckbox
           control={control}

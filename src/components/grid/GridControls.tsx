@@ -1,9 +1,8 @@
-import InputAdornment from '@mui/material/InputAdornment';
-import MenuItem from '@mui/material/MenuItem';
-import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LuSearch, LuX } from 'react-icons/lu';
+import { MenuItem, TextField } from '@/components/form/TextField';
+import { MultiSelect } from '@/components/form/MultiSelect';
 import { useDebouncedValue } from '@/lib/useDebouncedValue';
 
 /** Search box above a grid: local state, debounced before it reaches the URL/query. */
@@ -39,29 +38,21 @@ export function GridSearch({
       value={text}
       onChange={(e) => setText(e.target.value)}
       placeholder={placeholder}
-      sx={{ maxWidth: 320 }}
-      slotProps={{
-        htmlInput: { 'aria-label': label },
-        input: {
-          startAdornment: (
-            <InputAdornment position="start">
-              <LuSearch className="text-neutral-500" aria-hidden />
-            </InputAdornment>
-          ),
-          endAdornment: text ? (
-            <InputAdornment position="end">
-              <button
-                type="button"
-                aria-label={t('common.grid.clearSearch')}
-                onClick={() => setText('')}
-                className="-mr-1 inline-flex h-6 w-6 items-center justify-center rounded-sm text-neutral-500 hover:bg-neutral-100"
-              >
-                <LuX aria-hidden />
-              </button>
-            </InputAdornment>
-          ) : null,
-        },
-      }}
+      className="w-full max-w-80"
+      inputProps={{ 'aria-label': label }}
+      startAdornment={<LuSearch className="text-neutral-500" aria-hidden />}
+      endAdornment={
+        text ? (
+          <button
+            type="button"
+            aria-label={t('common.grid.clearSearch')}
+            onClick={() => setText('')}
+            className="inline-flex h-6 w-6 items-center justify-center rounded-sm text-neutral-500 hover:bg-neutral-100"
+          >
+            <LuX aria-hidden />
+          </button>
+        ) : null
+      }
     />
   );
 }
@@ -89,7 +80,7 @@ export function GridFilterSelect({
       label={label}
       value={value}
       onChange={(e) => onChange(e.target.value || null)}
-      sx={{ width }}
+      style={{ width }}
     >
       <MenuItem value="">{anyLabel ?? t('common.grid.any')}</MenuItem>
       {options.map((o) => (
@@ -118,36 +109,14 @@ export function GridFilterMulti({
   width?: number;
 }) {
   const { t } = useTranslation();
-  const labelOf = new Map(options.map((o) => [o.value, o.label]));
   return (
-    <TextField
-      select
+    <MultiSelect
       label={label}
       value={value}
-      onChange={(e) => {
-        const v = e.target.value as unknown;
-        onChange(typeof v === 'string' ? v.split(',').filter(Boolean) : (v as string[]));
-      }}
-      sx={{ width }}
-      slotProps={{
-        select: {
-          multiple: true,
-          displayEmpty: true,
-          renderValue: (sel) => {
-            const list = sel as string[];
-            return list.length
-              ? list.map((v) => labelOf.get(v) ?? v).join(', ')
-              : (anyLabel ?? t('common.grid.any'));
-          },
-        },
-        inputLabel: { shrink: true },
-      }}
-    >
-      {options.map((o) => (
-        <MenuItem key={o.value} value={o.value}>
-          {o.label}
-        </MenuItem>
-      ))}
-    </TextField>
+      onChange={onChange}
+      options={options}
+      anyLabel={anyLabel ?? t('common.grid.any')}
+      style={{ width }}
+    />
   );
 }

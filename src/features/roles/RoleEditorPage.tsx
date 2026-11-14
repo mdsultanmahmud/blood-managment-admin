@@ -153,7 +153,6 @@ export function RoleEditorPage({ basePath, roleId }: { basePath: string; roleId?
               name="name"
               label={t('roles.editor.name')}
               disabled={!canEdit}
-              fullWidth
             />
           </div>
         </Section>

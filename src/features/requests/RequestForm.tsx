@@ -81,21 +81,10 @@ export function RequestForm({ request }: { request?: BloodRequest }) {
           name="patientName"
           label={t('blood.field.patientName')}
           autoFocus
-          fullWidth
         />
-        <FormTextField
-          control={control}
-          name="hospital"
-          label={t('blood.field.hospital')}
-          fullWidth
-        />
+        <FormTextField control={control} name="hospital" label={t('blood.field.hospital')} />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <FormTextField
-            control={control}
-            name="district"
-            label={t('blood.field.district')}
-            fullWidth
-          />
+          <FormTextField control={control} name="district" label={t('blood.field.district')} />
           <FormAutocomplete
             control={control}
             name="bloodGroup"
@@ -108,7 +97,6 @@ export function RequestForm({ request }: { request?: BloodRequest }) {
             type="number"
             label={t('blood.field.units')}
             helperText={t('requests.form.unitsHelp')}
-            fullWidth
           />
           <FormAutocomplete
             control={control}
@@ -122,15 +110,12 @@ export function RequestForm({ request }: { request?: BloodRequest }) {
           name="neededBy"
           type="datetime-local"
           label={t('blood.field.neededBy')}
-          slotProps={{ inputLabel: { shrink: true } }}
-          fullWidth
         />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <FormTextField
             control={control}
             name="contactName"
             label={t('blood.field.contactName')}
-            fullWidth
           />
           <FormTextField
             control={control}
@@ -138,7 +123,6 @@ export function RequestForm({ request }: { request?: BloodRequest }) {
             type="tel"
             label={t('blood.field.contactPhone')}
             helperText={t('blood.phoneHelp')}
-            fullWidth
           />
         </div>
         <FormTextField
@@ -147,7 +131,6 @@ export function RequestForm({ request }: { request?: BloodRequest }) {
           label={t('blood.field.reason')}
           multiline
           minRows={2}
-          fullWidth
         />
       </ModalBody>
       <ModalFooter>

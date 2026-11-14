@@ -1,10 +1,9 @@
-import InputAdornment from '@mui/material/InputAdornment';
-import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import { Controller, type Control, type FieldValues, type Path } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { LuEye, LuEyeOff } from 'react-icons/lu';
 import { tx } from '@/lib/translate';
+import { TextField } from './TextField';
 
 /** Password input with a show/hide toggle. */
 export function FormPasswordField<T extends FieldValues>({
@@ -45,23 +44,17 @@ export function FormPasswordField<T extends FieldValues>({
               ? tx(fieldState.error.message, fieldState.error.message)
               : helperText
           }
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <button
-                    type="button"
-                    onClick={() => setVisible((v) => !v)}
-                    aria-label={visible ? t('common.password.hide') : t('common.password.show')}
-                    aria-pressed={visible}
-                    className="-mr-1 inline-flex h-7 w-7 items-center justify-center rounded-sm text-neutral-500 hover:bg-neutral-100 hover:text-neutral-800"
-                  >
-                    {visible ? <LuEyeOff aria-hidden /> : <LuEye aria-hidden />}
-                  </button>
-                </InputAdornment>
-              ),
-            },
-          }}
+          endAdornment={
+            <button
+              type="button"
+              onClick={() => setVisible((v) => !v)}
+              aria-label={visible ? t('common.password.hide') : t('common.password.show')}
+              aria-pressed={visible}
+              className="inline-flex h-7 w-7 items-center justify-center rounded-sm text-neutral-500 hover:bg-neutral-100 hover:text-neutral-800"
+            >
+              {visible ? <LuEyeOff aria-hidden /> : <LuEye aria-hidden />}
+            </button>
+          }
         />
       )}
     />
